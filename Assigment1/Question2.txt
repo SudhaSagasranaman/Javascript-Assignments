@@ -1,0 +1,2 @@
+2.	What kind of numbers are represented by the number type in JavaScript?
+The number type represents integers, decimal values and special numeric values like NaN

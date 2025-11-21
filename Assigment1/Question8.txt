@@ -1,0 +1,2 @@
+8. What does the NULL data type represent in JavaScript?
+NULL data type represents an empty value

@@ -1,0 +1,3 @@
+3, What is the limitation of the number data type?
+
+JavaScript has a limitation that it can store only up to  16 digits.

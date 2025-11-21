@@ -1,0 +1,10 @@
+6.What are the primitive data types in JavaScript?
+Primitive datatypes are the ones that will have single value and they are immutable. Immutable means the actual data cannot be modified but the variable will point to new memory location when reassigned.
+They are:
+1, Number
+2. String
+3, Boolean
+4, Null
+5,Undefined
+6, BigInt 
+7, Symbol

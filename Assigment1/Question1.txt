@@ -1,0 +1,30 @@
+1.	In JavaScript, how many data types are there?
+
+We can classify the datatypes into two types
+1, Primitive data types
+2, Non primitive data types 
+
+Primitive datatypes are the ones that will have single value and they are immutable. Immutable means the actual data cannot be modified but the variable will point to new memory location when reassigned.
+They are:
+1, Number
+2. String
+3, Boolean
+4, Null
+5,Undefined
+6, BigInt 
+7, Symbol
+
+
+Non primitive data types are the ones that will have collection of values and they are mutable. Here mutable means the actual value can be changed in that memory location that the variable pointing to. 
+
+They are:
+
+1, Object
+
+2, Array
+
+3, Functions
+
+4,Sets
+
+5, Maps

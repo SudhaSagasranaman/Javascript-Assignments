@@ -1,0 +1,4 @@
+9, What is the difference between let, var, and const in JavaScript?
+“let” is a block-level scope variable. Its value can be accessed inside the block and cannot be accessed outside the block. It can be reassigned but cannot be redeclared in the same block.
+“var” is a function-scope variable. Its value can be accessed inside and outside the block. It can be redeclared and reassigned.”
+“const” is a constant variable whose value will not change at any time. It cannot be reassigned or redeclared and it’s a block -level scope variable.

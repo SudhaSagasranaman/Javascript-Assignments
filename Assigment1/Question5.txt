@@ -1,0 +1,2 @@
+5, What does the undefined data type represent in JavaScript?
+It represents that a variable is  declared but no value assigned.

@@ -1,0 +1,2 @@
+10, How to declare multiple Variables in JavaScript?
+We can declare multiple variables by separating with a comma.

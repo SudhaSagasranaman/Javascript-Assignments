@@ -1,0 +1,2 @@
+7, What is the difference between a primitive data type and an object data type in Javascript?
+Primitive datatypes hold a single value and are immutable, whereas object data types hold a collection of values and are mutable. Primitive data types take less memory than non-primitive data types.
