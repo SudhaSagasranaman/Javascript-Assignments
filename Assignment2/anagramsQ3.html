@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str1 = "silent", str2 = "listen"
+        if (str1.length != str2.length) {
+            console.log(`${str1} and ${str2} are not anagrams`)
+            console.log("main if loop entered")
+        }
+        else {
+            for (i = 0; i < str1.length; i++) {
+                if (!str2.includes(str1[i])) {
+                    console.log(str1[i])
+                    console.log(`${str1} and ${str2} are not anagrams`)
+                    break;
+                }
+                else {
+                    if (i == str1.length - 1)
+                        console.log(`${str1} and ${str2} are anagrams`)
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

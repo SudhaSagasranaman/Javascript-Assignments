@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var str = "The longest word in the sentence", max
+        var strArray = str.split(" ")
+        console.log(strArray)
+        if (strArray.length > 0) {
+            max = strArray[0]
+            for (let i = 0; i < strArray.length; i++) {
+
+                if (strArray[i].length > max.length) {
+                    console.log(strArray[i])
+                    max = strArray[i]
+                }
+            }
+            console.log(`The longest word in the sentence is ${max}`)
+
+        }
+    </script>
+</body>
+
+</html>
