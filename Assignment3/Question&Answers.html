@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //<!-- 1. Write a program to calculate the sum of all elements in an array. -->
+
+        const arr = [23, 56, 789, 90, 0, -1, -56]
+        let sum = 0
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i]
+        }
+        console.log(`sum of the elements of the array is ${sum}`)
+
+        // <!-- 2. Create a program to find the largest number in an array. -->
+        const arrN = [23, 45, 67, 89, 990, 100, 345]
+        let max = arrN[0]
+        for (let i = 1; i < arrN.length; i++) {
+            if (arrN[i] > max) {
+                max = arrN[i]
+            }
+        }
+        console.log(`The largest number in the given array is  ${max}`)
+
+        //  <!-- 3. Implement a program to remove duplicate values from an array. -->
+        const arrD = [1, 1, 12, 4, 9, 0, 4, 5, 7, 6,1,88888], arrND = []
+        console.log(`The original array is ${arrD}`)
+        for (let i = 0; i < arrD.length; i++) {
+            for (let j = i + 1; j < arrD.length; j++) {
+                if (arrD[i] == arrD[j]) {
+                    arrD.splice(j, 1)
+                }
+            }
+        }
+         console.log(`after removing duplicates is ${arrD}`)
+        //   <!-- 4. Write a program that reverses the elements of an array without using the reverse method
+        const arrR = [1, 2, 3, 4, 5]
+        let reverse = [];
+        //reverse = arr.slice(-1)
+        let j = 0
+        for (let i = arrR.length - 1; i >= 0; i--) {
+            //  arr.splice(j,0,arr[i])
+            //  j++
+            reverse[j] = arrR[i]
+            j++
+        }
+        console.log(reverse)
+
+        // <!-- 5. Create a program that counts how many times a specific element appears in an array -->
+        const arrM = [1, 1, 3, 4, 7, 1, 2, 3, 4, 6, 1, 3], arr2 = []
+        let counter;
+        for (let i = 0; i < arrM.length; i++) {
+            counter = 1
+            if (!(arr2.includes(arrM[i]))) {
+                arr2.push(arrM[i])
+
+                for (let j = 0; j < arrM.length; j++) {
+                    if ((i != j) && (arrM[i] == arrM[j])) {
+                        counter += 1
+                    }
+                }
+                console.log(`The element ${arrM[i]} has occured ${counter} times`)
+
+            }
+
+        }
+
+
+        //<!-- 6. Write a program to separate even and odd numbers into two different arrays. -->
+        const arrP = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], even = [], odd = []
+        for (let i = 0; i < arrP.length; i++) {
+            if (arrP[i] % 2 == 0)
+                even.push(arrP[i])
+            else
+                odd.push(arrP[i])
+        }
+        console.log(`the Odd elements in the given array is ${odd}`)
+        console.log(`the Even elements in the given array is ${even}`)
+
+
+        //<!-- 7. Combine two numeric arrays into a single sorted array. -->
+        const arr1 = [1, 3, 5, 7, 9], arr2E = [2, 4, 6, 8, 10]
+        let combineArr = [], min, index
+
+        combineArr = arr1.concat(arr2E)
+        //combineArr.push(arr1,arr2)
+        //sorted.sort()
+        console.log(combineArr)
+        for (let j = 0; j < combineArr.length; j++) {
+            min = combineArr[j]
+            index = j;
+            for (let i = j + 1; i < combineArr.length; i++) {
+                if (combineArr[i] <= min) {
+                    min = combineArr[i]
+                    index = i;
+                }
+
+            }
+            // combineArr.pop()
+            combineArr.splice(index, 1)
+            combineArr.splice(j, 0, min)
+        }
+
+        console.log(`The sorted array is ${combineArr}`)
+
+        //<!-- 8. Given an array containing n distinct numbers taken from 0 to n, find the missing number -->
+        //<!-- If the array does not have sequential elements in the range 0 to n  then we have to sort the array first  and proceed with the following logic... since sorting has been done in the previous program , I am  taking the array which has sequential numbers  -->
+        const arr3 = [101, 102, 103, 104, 105, 107, 109, 110]
+        /* if the array is not sequntial sort it first*/
+        for (let i = 1; i < arr3.length; i++) {
+            if (arr3[i] != arr3[i - 1] + 1) {
+                console.log(`${arr3[i - 1] + 1} is missing`)
+            }
+        }
+
+        //<!-- 9. Rotate the elements of an array to the right by a specified number of positions. -->
+        const arr4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], noOfPositions = 4
+        for (let i = 0; i < noOfPositions; i++) {
+            arr4.push(arr4[i])
+        }
+        arr4.splice(0, noOfPositions)
+        console.log(arr4)
+
+
+        // <!-- 10. Split an array into chunks of a specified size, returning a 2D array. -->
+        const arr5 = [1, 2, 3, 4, 56, 78, 90, 45, 78], arr2D = []
+
+        let chunkSize = 3, arrLen, k = 0;
+        arrLen = arr5.length / chunkSize
+
+        for (let i = 0; i < arrLen; i++) {
+            arr2D[i] = []// very important to initialize each row in a 2D array as a empty row
+
+            for (let j = 0; j < chunkSize; j++) {
+                arr2D[i][j] = arr5[k]
+                k++
+            }
+        }
+        console.log(arr2D)
+
+
+    </script>
+</body>
+
+</html>
