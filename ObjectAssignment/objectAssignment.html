@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1,Task - 1 : Find the sum of people's budgets.
+    const people1 = [{ name: "PETER", age: 20, budget: 15000 },
+    { name: "XYZ", age: 21, budget: 13000 },
+    { name: "ABC", age: 22, budget: 15000 },
+    { name: "JIMMY", age: 23, budget: 14000 }]
+
+    const people12 = [{ name: "JOHN", age: 20, budget: 20000 },
+    { name: "XYZ", age: 21, budget: 34000 },
+    { name: "ABC", age: 22, budget: 56000 },
+    { name: "JIMMY", age: 23, budget: 14000 }]
+
+    let sumBudget = 0
+    for (let i = 0; i < people1.length; i++) {
+      sumBudget += Number(people1[i].budget)
+    }
+    console.log(`The sum of the budget of people1 is ${sumBudget}`)
+
+    sumBudget = 0
+    for (let i = 0; i < people12.length; i++) {
+      sumBudget += Number(people12[i].budget)
+    }
+    console.log(`The sum of the budget  of people12 is ${sumBudget}`)
+
+
+
+    // Task - 2 : Display book name according to the name author & reading status
+
+    var library = [
+      { author: 'Bill Gates', title: 'The Road Ahead', readingStatus: true },
+      { author: 'Steve Jobs', title: 'Walter Isaacson', readingStatus: true },
+      { author: 'Suzanne Collins', title: 'The Hunger Games', readingStatus: false }
+    ]
+    for (let i = 0; i < library.length; i++) {
+      if (library[i].readingStatus) {
+        console.log(`Already read ${library[i].author} by ${library[i].title}`)
+
+      }
+      else {
+        console.log(`You still need to read 'Mockingjay: The Final Book of ${library[i].title} by 
+   ${library[i].author}`)
+      }
+    }
+
+    //Task 3: Using compare operator compare 2 objects and return true or false accordingly.
+    var obj1 = {}, obj3 = {}
+    var obj2 = {}
+    obj1 = { a: 0, b: 2 }
+    obj2 = { a: 1, b: 2 }
+    let flag = true
+    // Object.entries(obj1) === Object.entries(obj2) ? console.log("TRUE") : console.log("FALSE")
+    // Object.entries(obj1) === Object.entries(obj3) ? console.log("TRUE") : console.log("FALSE")
+
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length)
+      console.log("False");
+    else {
+
+      for (let i = 0; i < keys1.length; i++) {
+        let key = keys1[i];//  checking the same key name
+
+        if (obj1[key] !== obj2[key])// checking the values 
+        {
+          flag = "False"
+          break;
+        }
+      }
+      flag == "False" ? console.log("False") : console.log("True");
+    }
+
+
+
+
+    //  Task - 4: Complete the below problem
+    // (i) const person1 = { name: 'Alex', address: '15th Park Avenue', age: 43 }
+    // ➢ Add new property to person1 object
+    // ➢ salary=123455
+    const person1 = { Name: "ABC", Age: 21, address: "12, mint street, Chennai" }
+    person1["Salary"] = 123455
+    console.log(person1)
+    console.log(`${person1.Name}  has age ${person1.Age}  and salary ${person1.Salary}`)
+    // (ii) Complete the below problem
+    // const person2= { name: 'Bob', address: 'Canada', age: 53 },
+    // ➢ Set salary of person1 to salary of person2
+    const person2 = { Name: "XYZ", Age: 25, address: "45,Bhavani Street, Chennai" }
+    person2["Salary"] = person1.Salary
+    console.log(person2)
+    
+    // <!-- Task - 5: WAP to generate 10 digit alpha-numeric coupon
+    // Example: D3SD4VV8FV -->
+    let coupon = ""
+    const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for (let i = 0; i < 10; i++) {
+      if (i % 2 == 0) {
+        coupon += alphabets[(Math.trunc(Math.random() * 26))]
+
+      }
+      else {
+        coupon += String(Math.trunc(Math.random() * 10))
+
+      }
+    }
+    console.log(`The 10 digit alpha numeric coupon is ${coupon}`)
+
+    //  Task - 6: Display the current time in the format HH:MM:SS.
+    let dTime = new Date();
+
+    let hours = dTime.getHours();
+    let minutes = dTime.getMinutes();
+    let seconds = dTime.getSeconds();
+
+    // Adding leading zero if any value is less than 10
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
+
+    const time = `${hours}:${minutes}:${seconds}`;
+    console.log(time);
+    // Task - 7: Return the day of the week for a given date.
+
+    const date = new Date("2024-11-18")
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+    console.log(days[date.getDay()])
+
+    // Task - 8: WAP to generate a random hexadecimal color code.
+    const hex = "0123456789ABCDEF";
+    let color = "#";
+
+    for (let i = 0; i < 6; i++) {
+      color += hex[Math.floor(Math.random() * 16)];
+    }
+    console.log(color)
+    // Task - 9: Generate a random floating-point number between two numbers.
+
+    let lowerLimit = 10
+    let upperLimit = 20
+
+    console.log(Math.random() * (upperLimit - lowerLimit) + lowerLimit);
+
+    // Task -10: WAP to return the first and last day of the current month.
+    const today = new Date();
+
+    // First day of current month
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    // Last day of current month
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    console.log(`first day of current year ${firstDay}`)
+    console.log(`Last day of current year ${lastDay}`)
+
+
+  </script>
+</body>
+
+</html>
