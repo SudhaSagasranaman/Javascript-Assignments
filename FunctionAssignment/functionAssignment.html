@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//    <!-- 1.) Write a function that checks whether a given string is a palindrome (a word, phrase, or sequence that reads the same backward as forward). -->
+function isPalindrome(str){
+  
+    if (str.toLowerCase() == str.split("").reverse().join("").toLowerCase())
+       console.log(`The string ${str} is a Palindrome`)
+    else
+       console.log(`The string ${str} is not a Palindrome`)
+}
+isPalindrome("Madam")
+isPalindrome("5ada5")
+isPalindrome("Helo")
+// 2.) Write a function that takes a string and returns it in reverse order.
+let str1 = "Hello world"
+const reverseStr = () => str1.split("").reverse().join("")
+console.log(reverseStr())
+
+// 3.) Remove Whitespace from a String Write a function that removes all leading and trailing whitespace from a string
+let str2 = "  Hello   World  "
+const trimStr = ()=> str2.trim()
+console.log(trimStr())
+
+// 4.) Sort an Array of Strings Alphabetically Write a function that sorts an array of strings.
+let arr = ["Banana", "Apple", "Orange", "Mango"]
+const sortArr = () => arr.sort()
+console.log(sortArr())
+
+// 5.) Create a function that takes two arrays and insert the second array in the middle of the first array
+let array1 =[15,150]
+let array2 = [45,75,35]
+const insertArray = (array1, array2) =>{
+    let mid = Math.floor(array1.length/2)
+    for(let i = 0;i<array2.length;i++){
+          array1.splice(mid, 0,array2[i])
+           //mid++
+    }
+    console.log(array1)
+}
+insertArray(array1,array2)
+
+// 6.) Write a function that prints the multiplication table for a given number up to 10.
+const multiplicationTable = num => {
+    for(let i = 1;i<= 10;i++){
+        console.log(`${num} * ${i} = ${num * (i)}`)
+
+    }
+}
+    multiplicationTable(8)
+// 7.) Write a function that prints all prime numbers up to a given number N.
+let n = 15, primeNo , flag
+function primeNumber(n)
+{
+for(i = 2; i<=n; i++)
+{
+    flag = true
+    for(j = 2;j<i; j++){
+    
+    if(i%j === 0){
+     flag = false
+     break
+    }
+} 
+   if (flag == true){
+    console.log(i)
+    }
+}
+}
+primeNumber(n)
+
+// 8.) Write a function to calculate the factorial of a given number using a loop.
+function factorial(n)
+{
+   let fact = 1;
+    if (n===0)
+    
+    return 1
+    
+ for(i = 1; i<=n; i++)
+ {
+    fact *=  i
+ }
+ return fact
+ 
+}
+
+console.log(`The factorial of ${4} is ${factorial(4)}`)
+
+// 9.) Write a function that prints numbers from 1 to 100. For multiples of 3, print "Fizz", for multiples of 5 print "Buzz", and for multiples of both 3 and 5, print "FizzBuzz".
+
+function printNumbers(){
+    for(let i = 1; i<= 100; i++)
+    {
+        if (i%3==0 && i%5==0)
+         {
+           console.log("FizzBuzz")
+         }
+         else if (i%3==0)
+         {
+            console.log("Fizz")
+         }
+         else if (i%5== 0)
+         {
+            console.log("Buzz")
+         }
+         else{
+            console.log(i)
+         }
+    }
+}
+ printNumbers()
+</script>
+
+ 
+</body>
+</html>
