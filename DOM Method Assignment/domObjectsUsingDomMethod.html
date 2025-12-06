@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page created using DOM method</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #mainContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height:100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+
+
+    //Navbar 
+    const navContainer = document.createElement("div")
+    navContainer.style.width = "100%"
+
+    const nav = document.createElement("nav")
+    nav.style.display = "flex"
+    nav.style.justifyContent = "space-around"
+    nav.style.alignItems = "center"
+    nav.style.backgroundColor = "black"
+    nav.style.color = "white";
+    //nav.style.padding = "5px"
+    nav.style.margin = 0;
+    const title = document.createElement("h2")
+    title.textContent = "My Website";
+
+    const ul = document.createElement("ul")
+    ul.style.listStyle = "none";
+    ul.style.display = "flex";
+    ul.style.gap = "30px";
+
+    const items = ["Home", "About", "Services", "Contact"];
+
+    for (let i = 0; i < items.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = items[i]
+
+        if (i === 0) {
+            li.style.color = "red"
+        }
+
+        ul.appendChild(li);
+    }
+
+    nav.appendChild(title);
+    nav.appendChild(ul);
+    navContainer.appendChild(nav);
+
+    document.body.appendChild(navContainer);
+    // backgroundImage
+    document.body.style.backgroundImage =
+        "url('https://www.amd.com/content/dam/amd/en/images/products/laptops/3292900-amd-laptop-game.png')";
+
+
+    //center Text
+    const mainContainer = document.createElement("div");
+    mainContainer.setAttribute("id","mainContainer")
+
+    const welcome = document.createElement("h1")
+    const loremText = document.createElement("h3")
+    welcome.textContent = "Welcome to my website"
+    loremText.style.color = "white";
+    loremText.textContent =  "Lorem epsum lorem epsum lorem epsum lorem epsum"  
+
+    welcome.style.color = "white";
+    mainContainer.appendChild(welcome);
+    mainContainer.appendChild(loremText)
+    document.body.appendChild(mainContainer);
+    mainContainer.style.flexDirection = "column";
+
+</script>
+
+</body>
+</html>
