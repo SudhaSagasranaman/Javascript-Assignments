@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body.scrolled {
+      background-color: blueviolet;
+    }
+
+    .changeColorDiv {
+      height: 200px;
+      width: 200px;
+      border: 1px solid;
+      background-color: bisque;
+    }
+
+    .changeColorDiv h4 {
+
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1.) Difference between Event bubbling and Event capturing? Write an example. -->
+  <p> When an event travels from the top of the DOM (window / document) down to the target element where the event
+    happen, it is called event capturing. -->
+
+    Direction: Top → Bottom
+
+    Moves from: window → document → body → parent → child (target)
+
+    Example (capturing)
+
+    You click a button → the event first reaches document, then moves down step-by-step until it reaches the target
+    button.
+
+    Bubbling is when the event travels back from the target element to the top element.
+    target → parent → grandparent → body → document → window
+    This upward movement is called bubbling.
+
+    JavaScript event listeners have two phases:
+
+    Capturing phase (top → target)
+
+    Bubbling phase (target → top) ← this is the default
+
+    So when we add an event listener:
+
+    element.addEventListener("click", handler, false);
+
+
+    false means - “Run this listener during bubbling phase.”
+
+    And when we write
+
+    element.addEventListener("click", handler, true);
+
+
+    true means- “Run this listener during capturing phase.”
+
+    Why is bubbling default (false) ?
+
+    Because bubbling is more commonly used in real applications.
+
+    Examples:
+
+    * Detecting clicks on parent elements
+
+    * Event delegation (handling many buttons with one listener)
+
+    * Simpler to manage UI interactions
+
+    Since bubbling is used 90% of the time, JavaScript made bubble = default behaviour.</p>
+
+  <button>Click Me </button>
+  <h4>count = <span class="clickCount">0</span></h4>
+  <h4>key pressed = <span class="keyPressDisplay"></span></h4>
+  <h4>X-coordinates = <span class="xValue"></span></h4>
+  <h4>Y-coordinates = <span class="yValue"></span></h4>
+  <div class="changeColorDiv">
+    <h4> hello I am hiding ... hover me to see</h4>
+  </div>
+  <input type="text" id="textInput" placeholder="Enter the text to count the lengtth ">
+  <p>Count : <span class="textLength">0</span></p>
+  <div class="changeTextDiv">
+    hello , I am there
+  </div>
+  <img src="https://images.filmibeat.com/ph-big/2015/10/naanum-rowdydhaan_144403153200.jpg" alt="no img"
+    class="hoverImg" />
+  <div>
+    <br>
+    <br>
+
+    <button class="addListItem">click me to add a List Item</button>
+    <ul>
+      <li> Item 1 </li>
+    </ul>
+  </div>
+
+  <br>
+
+  <button class = "disableBtn">Click me to disable </button>
+
+<textarea class="clickLog" rows="5" cols="30" disabled placeholder=" click log entries "></textarea>
+  <!-- 2.) How do you create and remove an element in dom? -->
+  <script>
+    const div = document.createElement("div")
+    div.textContent = "Created new element div using Dom method"
+    document.body.appendChild(div)
+
+    // <!-- Removing an element -->
+    div.remove();
+
+    // 3.) Create a button that counts the number of times it has been clicked. Display the 
+    // counter in a <span> element.
+    let count = 0
+    const clickBtn = document.querySelector("button")
+    const spanCounter = document.querySelector(".clickCount");
+    clickBtn.addEventListener("click", () => {
+      count++
+      spanCounter.textContent = count
+    })
+    // 4.) Detect and display the key that the user presses on the keyboard.
+    const keyPressLetter = document.querySelector(".keyPressDisplay")
+    addEventListener("keydown", (e) => {
+      keyPressLetter.textContent += e.key
+    })
+
+    //  5.) Track and display the mouse's current X and Y coordinates as the user moves the
+    // mouse over a <div>.
+    const xValue = document.querySelector(".xValue")
+    const yValue = document.querySelector(".yValue")
+    const body = document.querySelector("body")
+
+    body.addEventListener("mouseover", (e) => {
+      xValue.textContent = e.x
+      yValue.textContent = e.y
+
+    })
+    // 6.) Change the background color of a <div> when it's double-clicked.
+    const changeColorDiv = document.querySelector("div")
+    changeColorDiv.addEventListener("dblclick", () => {
+      changeColorDiv.style.backgroundColor = "yellow"
+    })
+    //  7.) When the user hovers over a <div>, display some hidden text. Hide the text when
+    //    the user stops hovering.
+    const h4 = document.querySelector(".changeColorDiv h4")
+    changeColorDiv.addEventListener("mouseenter", () => {
+      h4.style.visibility = "visible"
+    })
+
+    changeColorDiv.addEventListener("mouseleave", () => {
+      h4.style.visibility = "hidden"
+    })
+
+    // 8.) Create an input field that displays how many characters the user has typed.
+    const textInput = document.querySelector("#textInput")
+    const textLength = document.querySelector(".textLength")
+    textInput.addEventListener("input", () => {
+      textInput.value = textInput.value.toUpperCase()
+
+      textLength.textContent = textInput.value.length
+    })
+
+    // 9.) When the user clicks on a <div>, change the text inside it.
+    const changeTextDiv = document.querySelector(".changeTextDiv")
+    changeTextDiv.addEventListener("click", () => {
+      changeTextDiv.textContent = "changed text"
+
+    })
+
+    // 10.) When the user types in an input field, automatically convert the text to uppercase.
+
+    textInput.addEventListener("input", () => {
+      textInput.value = textInput.value.toUpperCase()
+
+    })
+
+    //11.) Change an image to another when the user hovers over it and revert to the original
+    // image when the user stops hovering.
+    const hoverImg = document.querySelector(".hoverImg")
+    const originalSrc = hoverImg.src
+    hoverImg.addEventListener("mouseenter", () => {
+      hoverImg.src = "https://sund-images.sunnxt.com/27694/640x360_97ca637d-353b-4009-b4cb-fe3132787f28.jpg"
+    })
+    hoverImg.addEventListener("mouseleave", () => {
+      hoverImg.src = originalSrc
+
+    })
+
+    //12.) Change the background color of the page when the user scrolls past a certain point
+    window.addEventListener("scroll", () => {
+      document.body.classList.toggle("scrolled", window.scrollY > 50)
+    })
+
+    //13.) Create a button that, when the button is clicked, Add a new list item to an
+    //  unordered list.
+    const ul = document.querySelector("ul")
+    const addListItem = document.querySelector(".addListItem")
+    let counter = 2
+    addListItem.addEventListener("click", () => {
+      const li = document.createElement("li");
+      li.textContent = `item ${counter}`
+      ul.appendChild(li)
+      counter++;
+    })
+    //14.) Once the user clicks a button, disable it and display a message that the button has
+    //  been clicked.
+      const  disableBtn = document.querySelector(".disableBtn")
+      disableBtn.addEventListener("click",(e)=>{
+           e.target.disabled = true
+           alert("Button disabled")
+      })
+
+    //15.) Capture and log every single click made anywhere on the page, including clicks
+    // on the document, buttons, links, etc.
+    clickLog = document.querySelector(".clickLog")
+      window.addEventListener("click",(e) =>{
+        clickLog.value +=  "clicked " + e.target.tagName +"\n"
+
+      }
+    
+    )
+  </script>
+</body>
+
+</html>
