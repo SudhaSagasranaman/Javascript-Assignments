@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        textarea {
+            margin: auto;
+            display: block;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        button {
+            display: inline-block;
+        }
+
+        .clock {
+            font-size: 45px;
+            margin-top: 20px;
+            font-weight: bolder;
+            background-color: bisque;
+            border: 2px solid;
+            display: inline-block;
+        }
+        .clockContainer{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.) Create an application for vowel counters by using HTML, CSS and JavaScript.
+● Develop a textarea to enter a words
+● Create 2 buttons for Count Vowels and Reset
+● When the user clicks on the Count Vowels button display vowels counts inside h2 tag.
+● While clicking the reset button the textarea and vowels counts have to be empty
+and 0. -->
+    <h1>Vowel Counter</h1>
+    <textarea rows="10" cols="40" placeholder="Enter the text "></textarea><br>
+    <h2>Number of Vowels: <span class="vowelCount">0</span></h2>
+    <div class="buttons">
+        <button type="submit" class="submit">Submit</button>
+        <button type="reset" class="reset">Reset</button>
+    </div>
+    <!-- 2.) Develop a 12 hrs format digital clock including seconds(AM & PM), By Using HTML,
+        CSS and Javascript. -->
+    <section class="clockContainer">
+        <div class="clock">00:00:00</div>
+    </section>
+
+    <script>
+        const clock = document.querySelector(".clock")
+        const submit = document.querySelector(".submit")
+        const reset = document.querySelector(".reset")
+
+
+        timeUpdate()
+        setInterval(timeUpdate, 1000)
+
+        submit.addEventListener("click", () => {
+            const textArea = document.querySelector("textarea")
+            let counter = 0
+            let textAreaText = textArea.value
+
+            for (let i = 0; i < textAreaText.length; i++) {
+
+                if (['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'].includes(textAreaText[i]))
+                    counter++;
+            }
+            document.querySelector(".vowelCount").textContent = counter
+        })
+
+        reset.addEventListener("click", () => {
+            textArea.value = ""
+            document.querySelector(".vowelCount").textContent = 0
+
+        })
+
+        function timeUpdate() {
+            const currentTime = new Date()
+            let currentHr = currentTime.getHours()
+            let currentMin = currentTime.getMinutes()
+            let currentSec = currentTime.getSeconds()
+            let ampm = currentHr < 12 ? "AM" : "PM"
+            //converting 24 hr format to 12 hpour format 
+            currentHr = currentHr % 12 || 12// here  or operator will return the first truthy value when
+            //12% 12 = 0 occurs ,its a falsy value so 12 will be returned ....
+            // adding leading zeros to hours minutes and seconds 
+            currentHr = currentHr < 10 ? '0' + currentHr : currentHr
+            currentMin = currentMin < 10 ? '0' + currentMin : currentMin
+            currentSec = currentSec < 10 ? '0' + currentSec : currentSec
+            clock.textContent = `${currentHr} : ${currentMin} : ${currentSec} ${ampm}`
+
+        }
+
+    </script>
+</body>
+
+</html>
