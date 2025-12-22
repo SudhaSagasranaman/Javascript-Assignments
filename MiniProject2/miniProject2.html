@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .todolistDiv {
+            text-align: center;
+            background-color: grey;
+            width:50%;
+            margin:auto;
+        }
+        /* .btnEditClass{
+            display: inline;   
+        
+        }
+        .btnDeleteClass{
+
+          display: inline;
+        } */
+
+        .todoListsClass {
+            text-align: center;
+
+        }
+        input {
+            width: 400px;
+            height: 25px;
+        }
+
+        body {
+            background-color: black;
+        }
+        #taskInput{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="todolistDiv">
+        <input type="text" placeholder="Enter the task" id="taskInput" />
+        <button class="btnAddTask">Add</button>
+    </div>
+    <script>
+        const add = document.querySelector(".btnAddTask")
+        const inputValue = document.querySelector("#taskInput")
+        todolistDiv = document.querySelector(".todolistDiv")
+        add.addEventListener("click", () => {
+            const row = document.createElement("Div")
+            const textBoxElement = document.createElement("input")
+            const btnEditElement = document.createElement("button")
+            const btnDelElement = document.createElement("button")
+            btnEditElement.textContent = "✏️"
+
+            btnEditElement.className = "btnEditClass"
+            btnDelElement.className = "btnDeleteClass"
+            btnDelElement.textContent = "🗑️"
+            textBoxElement.className = "todoListsClass"
+            textBoxElement.value = inputValue.value
+            row.append(textBoxElement, btnEditElement, btnDelElement)
+            todolistDiv.append(row)
+        })
+        todolistDiv.addEventListener("click", (e) => {
+            if (e.target.classList.contains("btnEditClass")) {
+                const textBox = e.target.previousElementSibling
+                inputValue.value = textBox.value
+            }
+            if (e.target.classList.contains("btnDeleteClass")) {
+                const deleteBtn = e.target
+                const editBtn = deleteBtn.previousElementSibling
+                const textBox = editBtn.previousElementSibling
+                textBox.remove()
+                editBtn.remove()
+                deleteBtn.remove()
+            }
+        })
+
+    </script>
+</body>
+
+</html>

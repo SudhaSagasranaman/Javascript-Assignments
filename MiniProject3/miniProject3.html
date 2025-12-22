@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    .buttons {
+        display: flex;
+    }
+
+    button {
+        flex: 1
+    }
+
+    .sliderDiv,
+    .dbclickDiv {
+        width: 500px;
+        height: 500px;
+        border: solid 1px;
+        overflow: hidden;
+        margin-top: 15px;
+        position: relative;
+
+    }
+
+    .sliderImg,
+    .dbclickImgClass {
+        width: 100%;
+        height: 95%;
+        object-fit: cover;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 40px;
+        transform: translate(-50%, -50%);
+        animation: pop 1s ease-out;
+    }
+
+    @keyframes pop {
+        0% {
+            transform:translate(-50%, -50%)
+ scale(2.0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate(-50%, -50%)
+scale(1.5);
+            opacity: 0;
+        }
+    }
+</style>
+
+<body>
+    <div class="sliderDiv">
+        <img class="sliderImg" />
+        <div class="buttons">
+            <button class="prevBtnClass">Previous</button>
+            <button class="nextBtnClass">Next</button>
+        </div>
+    </div>
+
+    <div class="dbclickDiv">
+        <img src="https://images.pexels.com/photos/1563355/pexels-photo-1563355.jpeg?cs=srgb&dl=pexels-thatguycraig000-1563355.jpg&fm=jpg"
+            class="dbclickImgClass" />
+    </div>
+
+    <script>
+        const images = ["https://img.freepik.com/premium-photo/desktop-wallpaper_1158775-3064.jpg?semt=ais_hybrid&w=740&q=80",
+            "https://rukminim2.flixcart.com/image/480/480/j7usl8w0/poster/h/t/x/medium-amezing-beautiful-wallpaper-hd-2-1-poster-rgb6n7po1136-original-imaexz2xkbuqxbq5.jpeg?q=90",
+            "https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "https://wallpapers.com/images/featured/hd-desktop-0tybboag2sq3qa95.jpg"]
+        let index = 0
+
+        const prevBtn = document.querySelector(".prevBtnClass")
+        const nextBtn = document.querySelector(".nextBtnClass")
+        const img = document.querySelector(".sliderImg")
+        img.src = images[index]
+        prevBtn.addEventListener("click", prevImg)
+
+        function prevImg() {
+            index--;
+            if (index < 0)
+                index = images.length - 1
+            img.src = images[index]
+
+        }
+        function nextImg() {
+            index++
+            if (index >= images.length)
+                index = 0;
+            img.src = images[index]
+        }
+
+        nextBtn.addEventListener("click", nextImg)
+        setInterval(nextImg, 3000)
+
+        const img1 = document.querySelector(".dbclickImgClass")
+        img1.addEventListener("dblclick", (e) => {
+            const heart = document.createElement("div");
+            heart.textContent = "❤️";
+            heart.className = "heart";
+
+            // position where user double-clicked
+            heart.style.left = e.offsetX + "px";
+            heart.style.top = e.offsetY + "px";
+
+            document.querySelector(".dbclickDiv").appendChild(heart);
+
+            // remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        });
+
+    </script>
+</body>
+
+</html>
