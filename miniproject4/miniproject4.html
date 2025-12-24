@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+
+    <style>
+        body {
+            height: 100vh;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 470px;
+            height: 470px;
+            background-color: blueviolet;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        .textboxClass {
+            height: 40px;
+            width: 80%;
+            background-color: rgb(2, 2, 19);
+            color: white;
+        }
+
+        .clipboardPasteBtn {
+            margin-top: -41px;
+            margin-left: 70%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        .labelContainer {
+            width: 80%;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+        }
+
+        #pwdLen {
+            width: 40px;
+            height: 30px;
+
+        }
+
+        .align {
+            width: 25px;
+            height: 25px;
+        }
+
+        .btnSize {
+            width: 100%;
+            height: 40px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Password Generator</h1>
+
+        <input class="textboxClass"  id = "result"/>
+        <button class="clipboardPasteBtn">📋</button>
+
+        <div class="labelContainer">
+
+            <div class="row">
+                <label>Password Length</label>
+                <input type="number" id="pwdLen"  min = "4" max = "20" />
+            </div>
+
+            <div class="row">
+                <label>Include Uppercase Letters</label>
+                <input type="checkbox" id = "uc" class="align">
+            </div>
+
+            <div class="row">
+                <label>Include Lowercase Letters</label>
+                <input type="checkbox" class="align" id = "lc">
+            </div>
+
+            <div class="row">
+                <label>Include Numbers</label>
+                <input type="checkbox" class="align" id = "num">
+            </div>
+
+            <div class="row">
+                <label>Include Special Characters</label>
+                <input type="checkbox" class="align" id = "sp">
+            </div>
+
+            <button class="btnSize">Generate Password</button>
+
+
+        </div>
+    </div>
+<script>
+          const generatepwdBtn =  document.querySelector(".btnSize")
+          generatepwdBtn.addEventListener("click",()=>{
+
+    const length = document.getElementById("pwdLen").value;
+if (length < 4 || length > 20) {
+    alert("Password length must be between 4 and 20");
+    return;
+}
+
+    const upper = document.getElementById("uc").checked;
+    const lower = document.getElementById("lc").checked;
+    const number = document.getElementById("num").checked;
+    const special = document.getElementById("sp").checked;
+
+    let characters = "";
+
+    if (upper) characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (lower) characters += "abcdefghijklmnopqrstuvwxyz";
+    if (number) characters += "0123456789";
+    if (special) characters += "!@#$%^&*()";
+
+    if (characters === "") {
+        alert("Please select at least one option");
+        return;
+    }
+
+    let password = "";
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
+    }
+
+    document.getElementById("result").value = password;
+
+          })
+
+        const clipboardPaste = document.querySelector(".clipboardPasteBtn")
+        result = document.querySelector("#result")
+        clipboardPaste.addEventListener("click", ()=>{
+            navigator.clipboard.writeText(result.value)
+            if (result.value)
+            alert(`Coped the password ${result.value} to clipboard`)
+        })
+</script>
+</body>
+</html>
