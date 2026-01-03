@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.) Use “map” to return a new array with each element squared.
+        // Example: Input : [1, 2, 3, 4] and Output: [1, 4, 9, 16]
+         const a = [1,2,3,4]
+         const b = a.map(a => a*a)
+         console.log(b)
+
+        // 2.) Use “filter” to create a new array containing only even numbers.
+        // Example: Input: [1, 2, 3, 4, 5, 6] and Output: [2, 4, 6]
+        const a1 = [1,2,3,4,5,6]
+        const b1 = a1.filter(a1=> a1%2 === 0)
+        console.log(b1)
+
+        // 3.) Use “map” to return a new array where each string is in uppercase.
+        // Example: Input: ["apple", "banana", "cherry"]
+        const a3 = ["apple","banana","cherry"]
+        const b3 = a3.map(a3=>a3.toUpperCase())
+        console.log(b3)
+
+        // 4.) Use “forEach” to calculate the sum of an array.
+        // Example: Input: [1, 2, 3, 4] and Output: 10
+         const a4 = [1,2,3,4]
+         let sum = 0;
+         a4.forEach(ele=>{
+
+            sum+=ele
+         })
+         console.log(sum)
+
+        // 5.) Use “map” to create an array containing only the names from an array of objects.
+        // Example: Input: [{ name: "Peter", age: 25 }, { name: "Jessica", age: 30 }];
+        // Output: ["Peter", "Jessica"]
+
+            const a5 = [{ name: "Peter", age: 25 }, { name: "Jessica", age: 30 }];
+            const a6 = a5.map(a5=>a5.name)
+            console.log(a6)
+
+        // 6.) Use “forEach” and “filter” to find duplicate values.
+        // Example: Input: [1, 2, 3, 4, 2, 3] and Output: [2, 3]
+            const a7 = [1,2,34,2,3,3,34]
+            let noDuplicates = []
+            a7.forEach(ele=>{
+                if (!noDuplicates.includes(ele) || noDuplicates.length === 0)
+                  noDuplicates.push(ele)
+                else
+                console.log(`Duplicate element :${ele}`)
+            })
+                                
+        
+        // 7.) Use “map” to add an exclamation mark to each string.
+        // Example: Input: ["hello", "world"] and Output: ["hello!", "world!"]
+            const a8 = ["hello","world"]
+            const a9 = a8.map(a8 => a8 +='!')
+            console.log(a9)
+
+        // 8.) Calculate the Length of Each String in an Array using map method.
+          const a10 = ["hello  siddd", "wild", "jimmy"]
+          a10.map(a10=>console.log(`The length of the string ${a10} is ${a10.length}`))
+        // 9.) Extract Domains from Email Addresses using map method.
+           const a11 = ["abs@gmail.com", "xyz@yahoo.in", "sid@microsoft.edu"]
+           const domains = a11.map(a11=>a11.split('@')[1])
+           console.log(domains)
+        // 10.) Separate Even and Odd Numbers into Two Arrays using forEach.
+              const a12 = [1,2,3,4,5,6,7,8,9,10]
+              const even = [],odd = []
+              a12.forEach(ele=>{
+                ele%2 === 0 ?
+                even.push(ele)
+                :
+                odd.push(ele)
+              })
+            console.log(`The even elements are separated in an array ${even}`)
+            console.log(`The odd elements are separated in an array ${odd}`)
+    </script>
+</body>
+
+</html>
