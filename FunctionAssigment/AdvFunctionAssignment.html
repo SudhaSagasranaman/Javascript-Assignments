@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  1.) Write a recursive function to print a nested folder structure.
+        const folders = {
+            name: "root",
+            children: [
+                { name: "src", children: [] },
+                { name: "assets", children: [{ name: "img", children: [] }] }
+            ]
+        };
+
+        function printFolders(folder) {
+            console.log(folder.name);
+            folder.children.forEach(i => {
+                printFolders(i); // recursion
+            })
+        }
+        printFolders(folders);
+
+        // 2.) Write a function that calculates the sum of all numbers in a nested array using
+        // recursion and reduce.
+
+        // Example: Input => [1, [2, [3, 4]], 5] ; Output: 15
+        const input1 = [[1, [2, [3, 4]], 5]]
+        console.log(sumOfNumbers(input1))
+        function sumOfNumbers(input1) {
+            return input1.reduce((sum, item) => {
+                if (Array.isArray(item)) {
+                    return sum + sumOfNumbers(item); // recursion
+                } else {
+                    return sum + item;
+                }
+            }, 0);
+        }
+
+
+
+        // 3.) Given an array of numbers, write a function that returns the sum of even numbers
+        //using only filter and reduce. (Use High-Order-Function).
+        const input = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        console.log(sumEvenNum(input))
+        function sumEvenNum(input) {
+            const tempArr = input.filter(i => i % 2 === 0)
+            return tempArr.reduce((sum, i, temparr) => { return sum += i }, 0)
+        }
+        // 4.) Implement your own version of map without using Array.prototype.map. (Use
+        // High-Order-Function).
+        const numbers = [1, 2, 3, 4];
+        const doubled = customMap(numbers, function (num) {
+            return num * 2;
+        });
+
+        console.log(doubled); // [2, 4, 6, 8]
+        function customMap(arr, callback) {
+            let result = [];              // new array
+
+            for (let i = 0; i < arr.length; i++) {
+                result.push(callback(arr[i])); // applying function
+            }
+
+            return result;
+        }
+
+        // 5.) Write a function myForEach that takes an array and a callback function and works
+        // like Array.prototype.forEach. (Callback Function – Custom forEach).
+
+        const fruits = ["apple", "banana", "orange"];
+        myForEach(fruits, function (item) {
+            console.log(item)
+        })
+        function myForEach(arr, callback1) {
+            for (let i = 0; i < arr.length; i++) {
+                callback1(arr[i], i, arr) // call function
+            }
+        }
+
+        // 6.) Write a curried function that allows infinite chaining and returns the sum when
+        // called with no arguments.
+
+        console.log(sum(1)(2)(3)())
+        console.log(sum(5)(10)(-2)(3)())
+        console.log(sum());
+        function sum(a) {
+            if (a === undefined)
+             return "undefined argument"
+             
+            let total = a || 0
+
+            return function next(b) {
+                if (b === undefined) {
+                    return total;        // stop condition
+                }
+                total += b;
+                return next;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
