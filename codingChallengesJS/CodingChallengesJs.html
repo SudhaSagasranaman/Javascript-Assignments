@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #txtId {
+            width: 300px;
+            height: 50px;
+            font-size: 18px;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: bisque;
+            opacity: 1
+        }
+
+        .hide {
+            opacity: 0
+        }
+    </style>
+
+</head>
+<label>Enter a Text</label>
+<input type="text" id="txtId">
+<div class="box">
+
+</div>
+
+<body>
+    <script>
+        // 1.) Write a Program As the user types in an input field, display a message if the input exceeds 10 characters.
+        const txtId = document.querySelector("#txtId")
+        txtId.addEventListener("keyup", () => {
+            if (txtId.value.length > 10) {
+                txtId.value = txtId.value.substring(0, 10);   // cut extra characters
+
+                alert("The maximum characters you can enter is 10")
+
+            }
+        })
+        // 2.) Create a box and allow the user to toggle its visibility by double-clicking on it.
+        const box = document.querySelector(".box")
+        box.addEventListener("dblclick", () => {
+            box.classList.toggle("hide")
+        })
+        //3.) Create a function to return the amount of potatoes there are in a string.
+
+
+        // Examples : potatoes("potato") âžž 1 , potatoes("potatopotato") âžž 2, potatoes("potatoapple") âžž 1
+        let str15 = "potatoapplepotatopotatotomatopotatomnpotto"
+        let i = 0, count = 0
+
+        while (i < str15.length) {
+            let pos = str15.indexOf("potato", i);
+
+            if (pos === -1) {
+                break;
+            }
+
+            count++;
+            i = pos + 6;
+        }
+
+        console.log(`Number of "potato" in the word ${str15}is ${count}`);
+        //  1.) Print the given pattern using JavaScript.
+        for (let i = 1; i <= 5; i++) {
+            let str123 = ""
+
+            for (let j = 1; j <= i; j++) {
+                str123 += "*"
+            }
+            console.log(str123)
+        }
+        for (let i = 1; i <= 5; i++) {
+            let str123 = ""
+            for (let s = 1; s <= 5 - i; s++) {
+                str123 += " ";
+            }
+            for (let j = 1; j <= i; j++) {
+                str123 += "*"
+            }
+            console.log(str123)
+        }
+
+
+
+
+        // 2.) Write a function, it should return longest word in the sentence
+        str1 = "React is a Javascript Library"
+        strArr = str1.split(' ')
+        let max = 0, ind = 0
+        strArr.forEach((ele, index) => {
+            if (max < ele.length) {
+                max = ele.length
+                ind = index
+            }
+        });
+
+        console.log(`Longest string in the sentence is \"${strArr[ind]}\"`)
+
+        // 3.) Write a function to check if the word is palindrome or not?
+        function isPalindrome(str2) {
+
+            let str2Reverse = str2.split("").reverse().join("")
+            if (str2 === str2Reverse)
+
+                return "Palindrome"
+
+            else
+
+                return "Not a Palindrome"
+
+        }
+        console.log(isPalindrome("Moom".toUpperCase()))
+        //4.) Write a function to check if two string words are anagrams or not?
+        function isAnagram(str1, str2) {
+            if (str1.length !== str2.length)
+                return "Not Anagrams"
+
+            for (let i = 0; i < str1.length; i++) {
+                if (!str2.includes(str1[i]))
+                    return "Not Anagrams"
+
+            }
+            return "Anagrams"
+        }
+        console.log(isAnagram("silent".toUpperCase, "listen".toUpperCase))
+
+        //5.) Write a function to find the largest number in the array!
+        const arr1 = [1, 2, 310, 9, 11, 56, 1, 2, 0]
+        console.log(largest(arr1))
+        function largest(arr) {
+            let max = 0
+            for (let i = 0; i < arr.length; i++) {
+                if (max < arr[i]) {
+                    max = arr[i]
+                }
+            }
+            return max
+        }
+        // 6.) Reverse the string without using the reverse method and make it as lowerCase.
+        let str12 = "JAVASCRIPT", revStr = ""
+        for (i = str12.length - 1; i >= 0; i--) {
+            revStr += str12[i]
+        }
+        console.log(revStr.toLowerCase())
+
+
+    </script>
+</body>
+
+</html>
