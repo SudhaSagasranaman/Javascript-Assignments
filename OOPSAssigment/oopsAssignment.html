@@ -15,30 +15,32 @@
         // ➢ Add methods to add, remove, and calculate the total cost of items.
         // ➢ Include discounts as a feature and ensure encapsulation of cart data.
         class ShoppingCart {
+            #cartItems
+            #discount
             constructor() {
-                this.cartItems = []
+                this.#cartItems = []
             }
             addItem(item) {
 
-                this.cartItems.push(item)
+                this.#cartItems.push(item)
             }
             removeItem(index) {
-                if (index >= 0 && index < this.cartItems.length)
-                    this.cartItems.splice(index, 1)
+                if (index >= 0 && index < this.#cartItems.length)
+                    this.#cartItems.splice(index, 1)
                 else
                     console.log("No items to delete")
             }
             applyDiscount(percent) {
-                this.discount = percent;
+                this.#discount = percent;
             }
 
             calcTotalCost() {
                 let total = 0
-                for (let i = 0; i < this.cartItems.length; i++) {
-                    total += this.cartItems[i].price
+                for (let i = 0; i < this.#cartItems.length; i++) {
+                    total += this.#cartItems[i].price
                 }
-                if (this.discount > 0) {
-                    let discountAmount = (total * this.discount) / 100;
+                if (this.#discount > 0) {
+                    let discountAmount = (total * this.#discount) / 100;
                     return total - discountAmount;
                 }
                 else
@@ -66,7 +68,343 @@
         cart.removeItem(1);
 
         console.log("After removing one item:", cart.calcTotalCost());
+        //2. Create a Library class that manages a collection of books. Each book is an instance of a Book class with properties like title, author, and isAvailable.
+        //    Tasks:
+        // ➢ Implement methods to add books, lend books, and return books.
+        // ➢ Use getters/setters to retrieve and update book availability.
+        class Book {
+            #_bookId
+            constructor(bookId, bookAuthor, bookTitle, isAvailable) {
+                this.#_bookId = bookId
+                this._bookAuthor = bookAuthor
+                this._bookTitle = bookTitle
+                this._isAvailable = isAvailable
+            }
+            get isAvailable() {
+                return this._isAvailable
+            }
+            set isAvailable(val) {
+                this._isAvailable = val
+            }
+            get bookId() {
+                return (this._bookId)
+            }
+        }
+        class Library {
+            constructor() {
+                this.books = []
 
+            }
+            addBooks(book) {
+                this.books.push(book)
+            }
+            lendBooks(bookId) {
+                for (let i = 0; i < this.books.length; i++) {
+                    if (this.books[i].bookId === bookId) {
+                        this.books[i].isAvailable = false
+                        console.log("The following book is lent")
+                        console.log(this.books[i])
+
+                    }
+                }
+            }
+            returnBooks(bookId) {
+                for (let i = 0; i < this.books.length; i++) {
+                    if (this.books[i].bookId === bookId) {
+                        this.books[i].isAvailable = true
+                        console.log("The following book is returned ")
+                        console.log(this.books[i])
+                    }
+
+                }
+
+            }
+        }
+
+        const book1 = new Book(1, "xyz", "Advanced Economics", true)
+        const book2 = new Book(2, "abc", " Advanced Maths", true)
+        const book3 = new Book(3, "def", "Advanced Science", true)
+        const book4 = new Book(4, "ghi", "Advanced English", true)
+        const book5 = new Book(5, "jkl", "Advanced Economics", true)
+        const lib = new Library()
+        console.log(book1)
+        lib.addBooks(book1)
+        lib.addBooks(book2)
+        lib.addBooks(book3)
+        lib.addBooks(book4)
+        lib.addBooks(book5)
+
+        lib.lendBooks(2)
+
+        lib.returnBooks(2)
+
+        // 3.) Create a Task class with properties like id, title, status, and priority.
+        // Tasks:
+        // ➢ Implement a TaskManager class to manage multiple tasks.
+        // ➢ Add methods to filter tasks by priority or status.
+        // ➢ Implement a way to mark tasks as complete.
+
+        class Task {
+            constructor(id, title, status, priority) {
+                this._id = id
+                this._title = title
+                this._status = status
+                this._priority = priority
+            }
+
+
+        }
+        class TaskManager {
+            #tasks
+            constructor() {
+                this.#tasks = []
+            }
+            addTask(task) {
+                this.#tasks.push(task)
+
+            }
+            filterTask(val) {
+                return this.#tasks.filter((task) => {
+                    return task._priority === val || task._status === val
+                })
+            }
+
+
+            markComplete(task) {
+                task._status = "completed"
+            }
+            get tasks() {
+                return this.#tasks
+            }
+        }
+        const task1 = new Task(1, "chrome", "waiting", "high")
+        const task2 = new Task(2, "explorer", "in-progress", "low")
+        const task3 = new Task(3, "youtube", "pending", "high")
+        const task4 = new Task(4, "gallery", "completed", "low")
+        const task5 = new Task(5, "mozilla", "waiting", "normal")
+        const task6 = new Task(6, "gallery", "completed", "low")
+        const TaskManager1 = new TaskManager()
+        TaskManager1.addTask(task1)
+        TaskManager1.addTask(task2)
+        TaskManager1.addTask(task3)
+        TaskManager1.addTask(task4)
+        TaskManager1.addTask(task5)
+        TaskManager1.addTask(task6)
+        TaskManager1.markComplete(task1)
+
+        console.log(TaskManager1.tasks)
+        console.log(TaskManager1.filterTask("high"))
+        console.log(TaskManager1.filterTask("waiting"))
+
+        // 4.) Create a VideoPlayer class with properties like videoUrl, currentTime, and
+        // isPlaying
+        // Tasks:
+        // ➢ Implement methods to play, pause, and seek the video.
+        class VideoPlayer {
+            #videoUrl
+            #cTime
+            #isPlaying
+            #duration
+            #eventVideoEnd
+            constructor(videoUrl, cTime, isPlaying, duration) {
+                this.#videoUrl = videoUrl
+                this.#cTime = cTime
+                this.#isPlaying = isPlaying
+                this.#duration = duration
+                this.#eventVideoEnd = null
+            }
+
+            play() {
+                this.#isPlaying = true
+                console.log("video is playing")
+            }
+            pause() {
+                this.#isPlaying = false
+                console.log("video is paused")
+            }
+            seek(time) {
+                this.#cTime = time
+                console.log("Video moved to", time)
+                this.checkEnd()
+
+            }
+            onVideoEnd(fn) {
+                this.#eventVideoEnd = fn
+            }
+
+            checkEnd() {
+                if (this.#cTime >= this.#duration) {
+                    this.#isPlaying = false
+                    console.log("Video ended")
+
+                    if (this.#eventVideoEnd) {
+                        this.#eventVideoEnd()   // fire event
+                    }
+                }
+            }
+
+            get currentTime() {
+                return this.#cTime
+            }
+
+            get isPlaying() {
+                return this.#isPlaying
+            }
+
+            get videoUrl() {
+                return this.#videoUrl
+            }
+
+        }
+
+        const videoPlayer1 = new VideoPlayer("link1", 0, false, 50)
+        const videoPlayer2 = new VideoPlayer("link2", 10, false, 40)
+        const videoPlayer3 = new VideoPlayer("link3", 20, false, 30)
+        videoPlayer1.onVideoEnd(() => {
+            console.log("Video finished event triggered")
+        })
+        videoPlayer1.play()
+        videoPlayer1.seek(30)
+        videoPlayer1.seek(50)
+        // 5.) Design a ChatRoom class where users can join and send messages. Each user
+        // should be an instance of a User class.
+        // Tasks:
+        // ➢ Implement methods to join/leave a room.
+        // ➢ Display a history of messages, including the sender's name.
+
+        class User {
+            #_userName
+            #_message
+            constructor(name) {
+                this.#_userName = name
+                this.#_message = ""
+            }
+            sendMessage(msg) {
+                this.#_message += msg
+            }
+            get messages() {
+                return this.#_message
+            }
+
+            get userName() { return this.#_userName }
+
+        }
+
+        class ChatRoom {
+            #_users
+            constructor() {
+                this.#_users = []
+            }
+            joinChat(user) { this.#_users.push(user) }
+            leaveChat(user) {
+                for (let i = 0; i < this.#_users.length; i++) {
+                    if (this.#_users[i] === user) {
+                        this.#_users.splice(i, 1)
+                        break
+                    }
+                }
+                console.log(this.#_users)
+            }
+            displayMessageHistory(user) {
+                console.log(user.userName + ": " + user.messages)
+            }
+
+
+            get users() { return this.#_users.map(user => user.userName) }
+
+        }
+        const user1 = new User("user1")
+        const user2 = new User("user2")
+        const user3 = new User("user3")
+
+        const chatRoom = new ChatRoom()
+        chatRoom.joinChat(user1)
+        chatRoom.joinChat(user2)
+        chatRoom.joinChat(user3)
+        console.log(chatRoom.users)
+        user1.sendMessage("lorem100")
+
+        user2.sendMessage("hello! Im user2 ... How are you")
+        user1.sendMessage("Hello ! Im user1 .... I am fine ")
+        user3.sendMessage("Hello! I am user3 ")
+        user1.sendMessage("Hiiiiiiiiii bye")
+        chatRoom.displayMessageHistory(user1)
+
+        chatRoom.leaveChat(user1)
+
+        // 6.) Create a File class with properties like name, size, and content.
+        // Tasks:
+        // ➢ Implement a Folder class to manage multiple files and subfolders.
+        // ➢ Add methods to add files, remove files, and calculate the total size of the folder.
+        class File {
+            #_name
+            #_size
+            #_content
+            constructor(name, size, content) {
+                this.#_name = name
+                this.#_size = size
+                this.#_content = content
+            }
+    get size() {
+        return this.#_size
+    }
+        }
+
+class Folder {
+    #files
+    #subFolders
+
+    constructor() {
+        this.#files = []
+        this.#subFolders = []
+    }
+
+    addFile(file) {
+        this.#files.push(file)
+    }
+
+    addFolder(folder) {
+        this.#subFolders.push(folder)
+    }
+
+    removeFile(file) {
+        this.#files = this.#files.filter(f => f !== file)
+    }
+
+calcSize() {
+    let total = 0
+
+    this.#files.forEach(file => {
+        total += file.size   
+    })
+
+    this.#subFolders.forEach(folder => {
+        total += folder.calcSize()
+    })
+
+    return total
+}
+    get allItems() {
+        return {
+            files: this.#files,
+            folders: this.#subFolders
+        }
+    }
+}
+        
+const file1 = new File("JS", 23, "JS files")
+const file2 = new File("C++", 23, "C++ files")
+
+const subFolder = new Folder()
+const file3 = new File("HTML", 10, "HTML files")
+subFolder.addFile(file3)
+
+const mainFolder = new Folder()
+mainFolder.addFile(file1)
+mainFolder.addFile(file2)
+mainFolder.addFolder(subFolder)
+console.log(mainFolder.allItems)
+console.log(mainFolder.calcSize())  
     </script>
 </body>
 
