@@ -5,7 +5,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #111;
+  background-color: #111;
 }
 
 /* main app card */
@@ -24,7 +24,7 @@ body {
 .left {
   width: 280px;
   padding: 15px;
-  background: rgba(255,255,255,0.35);
+  background-color: rgba(255,255,255,0.35);
   backdrop-filter: blur(12px);
 }
 
@@ -82,7 +82,7 @@ body {
 
 .right {
   flex: 1;
-  background: #f9f9f9;
+  background-color: #f9f9f9;
   padding: 20px;
   overflow-y: auto;
 }
@@ -116,7 +116,7 @@ body {
 
 .unit-btn {
   border: none;
-  background: #eee;
+  background-color: #eee;
   padding: 6px 10px;
   border-radius: 50px;
   font-size: 12px;
@@ -124,7 +124,7 @@ body {
 }
 
 .unit-btn.active {
-  background: black;
+  background-color: black;
   color: white;
 }
 
@@ -140,7 +140,7 @@ body {
   border-radius: 12px;
   padding: 6px 6px;   /* reduce padding = card becomes shorter */
   text-align: center;
-  background: white;
+  background-color: white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   border: none;
   font-size: 11px;  
@@ -162,7 +162,7 @@ body {
   width: 80px;
   padding: 12px;
   border-radius: 15px;
-  background: white;
+  background-color: white;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   font-size: 12px;
@@ -178,7 +178,7 @@ body {
 }
 
 .highlight-card {
-  background: white;
+  background-color: white;
   padding: 4px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
