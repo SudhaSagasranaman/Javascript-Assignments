@@ -14,32 +14,61 @@ const assets = {
 
 /* FETCH */
 function fetchWeather(city) {
-  const unitGroup = currentUnit === "C" ? "metric" : "us";
 
-  fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitGroup}&key=${API_KEY}&contentType=json`)
-    .then(res => res.json())
-    .then(data => {
+  let unitGroup = "metric";   // Celsius
+  if (currentUnit === "F") {
+    unitGroup = "us";         // Fahrenheit
+  }
+
+  // API URL
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitGroup}&key=${API_KEY}&contentType=json`;
+
+  // Fetching data from API
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+
       weatherData = data;
+
       updateLeft(data);
+
+      // update hourly forecast
       renderHourly(data.days[0].hours);
+
+      // updating highlights
       updateHighlights(data);
+
+    
+      // If user is in Week tab, update Week forecast also
+      const isWeekTabOpen = !weekView.classList.contains("d-none");
+      if (isWeekTabOpen) {
+        renderWeek(data.days);
+      }
     })
     .catch(() => alert("Invalid city"));
 }
 
-/* LEFT PANEL */
+/* left panelL */
 function updateLeft(data) {
-  const c = data.currentConditions;
-  const a = assets[c.icon] || assets.default;
 
-  app.style.backgroundImage = `url(${a.bg})`;
-  weatherIcon.src = a.icon;
+  const current = data.currentConditions;
 
-  temp.textContent = Math.round(c.temp) + (currentUnit === "C" ? "°C" : "°F");
-  condition.textContent = c.conditions;
+  const weatherAsset = assets[current.icon] || assets.default;
+
+  app.style.backgroundImage = "url(" + weatherAsset.bg + ")";
+  weatherIcon.src = weatherAsset.icon;
+
+  let unitSymbol = "°C";
+  if (currentUnit === "F") {
+    unitSymbol = "°F";
+  }
+  temp.textContent = Math.round(current.temp) + unitSymbol;
+
+  condition.textContent = current.conditions;
   city.textContent = data.resolvedAddress;
 
-  dateTime.textContent = new Date().toLocaleDateString("en-US", {
+  const todayDate = new Date();
+  dateTime.textContent = todayDate.toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -47,7 +76,7 @@ function updateLeft(data) {
   });
 }
 
-/* HIGHLIGHTS */
+/* highlight */
 function updateHighlights(data) {
   const c = data.currentConditions;
 
@@ -72,28 +101,50 @@ function updateHighlights(data) {
   sunset2.textContent = c.sunset ?? "--";
 }
 
-/* HOURLY */
+/* hourly */
 function renderHourly(hours) {
+
   hourlyForecast.innerHTML = "";
 
-  // show only 12 cards for clean UI
-  hours.slice(0, 12).forEach(h => {
-    const a = assets[h.icon] || assets.default;
+  const first12Hours = hours.slice(0, 12);
 
-    const hour24 = parseInt(h.datetime.split(":")[0]);
-    const period = hour24 >= 12 ? "PM" : "AM";
-    const hour12 = hour24 % 12 || 12;
-    const timeLabel = `${hour12.toString().padStart(2, "0")}:00 ${period}`;
+  first12Hours.forEach(function (hourData) {
 
-    hourlyForecast.innerHTML += `
+    const iconData = assets[hourData.icon] || assets.default;
+
+    const hourPart = hourData.datetime.split(":")[0];  // "13"
+    const hour24 = Number(hourPart);                   // 13
+
+    let period = "AM";
+    if (hour24 >= 12) {
+      period = "PM";
+    }
+
+    let hour12 = hour24 % 12;
+    if (hour12 === 0) {
+      hour12 = 12;
+    }
+
+    let hourText = hour12.toString().padStart(2, "0");
+
+    const timeLabel = hourText + ":00 " + period;
+
+    let unitSymbol = "°C";
+    if (currentUnit === "F") {
+      unitSymbol = "°F";
+    }
+
+    const oneCard = `
       <div class="col-6 col-md-2">
         <div class="card">
           <strong>${timeLabel}</strong><br>
-          <img src="${a.icon}" width="40"><br>
-          ${Math.round(h.temp)}${currentUnit === "C" ? "°C" : "°F"}
+          <img src="${iconData.icon}" width="40"><br>
+          ${Math.round(hourData.temp)}${unitSymbol}
         </div>
       </div>
     `;
+
+    hourlyForecast.innerHTML += oneCard;
   });
 }
 
