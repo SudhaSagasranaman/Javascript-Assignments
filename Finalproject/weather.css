@@ -147,7 +147,7 @@ body {
 }
 
 #hourlyForecast img {
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
 /* week forecast */
@@ -173,25 +173,26 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
 .highlight-card {
   background: white;
-  padding: 6px;
+  padding: 4px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .highlight-card .title {
-  font-size: 8px;
+  font-size: 10px;
   color: gray;
   margin-bottom: 6px;
 }
 
 .highlight-card h4 {
   margin: 0;
-  font-weight: 700;
+  font-size: small;
+  font-weight: bolder;
 }
 
 /* footer */
