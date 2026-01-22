@@ -1,6 +1,8 @@
 const API_KEY = "EJ6UBL2JEQGYB3AA4ENASN62J";
 let weatherData = null;
 
+let currentUnit = "C"; // default Celsius
+
 const assets = {
   "partly-cloudy-day": { icon: "https://i.ibb.co/PZQXH8V/27.png", bg: "https://i.ibb.co/qNv7NxZ/pc.webp" },
   "partly-cloudy-night": { icon: "https://i.ibb.co/Kzkk59k/15.png", bg: "https://i.ibb.co/RDfPqXz/pcn.jpg" },
@@ -12,7 +14,9 @@ const assets = {
 
 /* FETCH */
 function fetchWeather(city) {
-  fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${API_KEY}&contentType=json`)
+  const unitGroup = currentUnit === "C" ? "metric" : "us";
+
+  fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitGroup}&key=${API_KEY}&contentType=json`)
     .then(res => res.json())
     .then(data => {
       weatherData = data;
@@ -31,7 +35,7 @@ function updateLeft(data) {
   app.style.backgroundImage = `url(${a.bg})`;
   weatherIcon.src = a.icon;
 
-  temp.textContent = Math.round(c.temp) + "°C";
+  temp.textContent = Math.round(c.temp) + (currentUnit === "C" ? "°C" : "°F");
   condition.textContent = c.conditions;
   city.textContent = data.resolvedAddress;
 
@@ -86,7 +90,7 @@ function renderHourly(hours) {
         <div class="card">
           <strong>${timeLabel}</strong><br>
           <img src="${a.icon}" width="40"><br>
-          ${Math.round(h.temp)}°C
+          ${Math.round(h.temp)}${currentUnit === "C" ? "°C" : "°F"}
         </div>
       </div>
     `;
@@ -107,7 +111,7 @@ function renderWeek(days) {
       <div class="weekly-card">
         <strong>${weekDay}</strong><br>
         <img src="${asset.icon}" width="40"><br>
-        ${Math.round(day.temp)}°C
+        ${Math.round(day.temp)}${currentUnit === "C" ? "°C" : "°F"}
       </div>
     `;
   });
@@ -138,6 +142,25 @@ searchBtn.onclick = () => {
 cityInput.addEventListener("keydown", e => {
   if (e.key === "Enter") searchBtn.click();
 });
+
+/* UNIT BUTTONS */
+cBtn.onclick = () => {
+  currentUnit = "C";
+  cBtn.classList.add("active");
+  fBtn.classList.remove("active");
+
+  if (cityInput.value.trim()) fetchWeather(cityInput.value.trim());
+  else fetchWeather("Bangalore");
+};
+
+fBtn.onclick = () => {
+  currentUnit = "F";
+  fBtn.classList.add("active");
+  cBtn.classList.remove("active");
+
+  if (cityInput.value.trim()) fetchWeather(cityInput.value.trim());
+  else fetchWeather("Bangalore");
+};
 
 /* D */
 fetchWeather("Bangalore");

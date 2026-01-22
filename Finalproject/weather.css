@@ -85,6 +85,9 @@ body {
   background: #f9f9f9;
   padding: 20px;
   overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
 }
 
 /* header */
