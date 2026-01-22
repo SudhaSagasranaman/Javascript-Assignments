@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="weather.css">
+</head>
+
+<body>
+
+<div id="app" class="app">
+
+  <!-- left panel -->
+  <div class="left">
+    <div class="search-box">
+      <input id="cityInput" placeholder="Search city">
+      <button id="searchBtn"></button>
+    </div>
+
+    <div class="left-center">
+      <img id="weatherIcon" alt="weather icon">
+      <h1 id="temp">--°C</h1>
+      <p id="dateTime">--</p>
+      <p id="condition">--</p>
+      <p id="city">--</p>
+    </div>
+  </div>
+
+  <!--right panel -->
+  <div class="right">
+
+    <!-- header -->
+    <div class="header">
+      <div class="tabs">
+        <span id="todayTab" class="active">Today</span>
+        <span id="weekTab">Week</span>
+      </div>
+
+      <div class="unit-toggle">
+        <button class="unit-btn active">°C</button>
+        <button class="unit-btn">°F</button>
+      </div>
+    </div>
+
+    <!-- today view -->
+    <div id="todayView">
+      <h6 class="section-title">Hourly Forecast</h6>
+      <div class="row g-2" id="hourlyForecast"></div>
+
+      <h6 class="section-title mt-4">Today's Highlights</h6>
+
+      <div class="highlights">
+        <div class="highlight-card">
+          <p class="title">UV Index</p>
+          <h4 id="uv">--</h4>
+          <small>Moderate</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Wind Status</p>
+          <h4><span id="wind">--</span></h4>
+          <small>km/h</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Sunrise & Sunset</p>
+          <h4 id="sunrise">--</h4>
+          <small id="sunset">--</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Humidity</p>
+          <h4><span id="humidity">--</span>%</h4>
+          <small>High</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Visibility</p>
+          <h4 id="visibility">--</h4>
+          <small>Very Clear Air</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Air Quality</p>
+          <h4 id="air">--</h4>
+          <small>Good</small>
+        </div>
+      </div>
+
+      <div class="app-footer">
+        Weather Prediction App by <span>Sudha Sagas</span>
+      </div>
+    </div>
+
+    <!-- week view -->
+    <div id="weekView" class="d-none">
+      <h6 class="section-title">7 Day Forecast</h6>
+
+      <div id="weeklyForecast" class="weekly-forecast"></div>
+
+      <h6 class="section-title mt-4">Today's Highlights</h6>
+
+      <div class="highlights">
+        <div class="highlight-card">
+          <p class="title">UV Index</p>
+          <h4 id="uv2">--</h4>
+          <small>Moderate</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Wind Status</p>
+          <h4 id="wind2">--</h4>
+          <small>km/h</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Sunrise & Sunset</p>
+          <h4 id="sunrise2">--</h4>
+          <small id="sunset2">--</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Humidity</p>
+          <h4 id="humidity2">--</h4>
+          <small>High</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Visibility</p>
+          <h4 id="visibility2">--</h4>
+          <small>Very Clear Air</small>
+        </div>
+
+        <div class="highlight-card">
+          <p class="title">Air Quality</p>
+          <h4 id="air2">--</h4>
+          <small>Good</small>
+        </div>
+      </div>
+
+      <div class="app-footer">
+        Weather Prediction App by <span>Sudha Sagas</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="weather.js"></script>
+</body>
+</html>
