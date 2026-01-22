@@ -160,12 +160,13 @@ body {
 
 .weekly-card {
   width: 80px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 15px;
   background: white;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   font-size: 12px;
+  margin-bottom : 100px
 }
 
 /* grid */
