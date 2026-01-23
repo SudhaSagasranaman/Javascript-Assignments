@@ -12,7 +12,7 @@ const assets = {
   "default": { icon: "https://i.ibb.co/rb4rrJL/26.png", bg: "https://i.ibb.co/qNv7NxZ/pc.webp" }
 };
 
-/* FETCH */
+/* ffetch */
 function fetchWeather(city) {
 
   let unitGroup = "metric";   // Celsius
@@ -148,7 +148,7 @@ function renderHourly(hours) {
   });
 }
 
-/* WEEK */
+/* render week*/
 function renderWeek(days) {
   weeklyForecast.innerHTML = "";
 
@@ -168,7 +168,7 @@ function renderWeek(days) {
   });
 }
 
-/* TABS */
+/* tabs */
 todayTab.onclick = () => {
   todayView.classList.remove("d-none");
   weekView.classList.add("d-none");
@@ -194,7 +194,7 @@ cityInput.addEventListener("keydown", e => {
   if (e.key === "Enter") searchBtn.click();
 });
 
-/* UNIT BUTTONS */
+/* unit btns */
 cBtn.onclick = () => {
   currentUnit = "C";
   cBtn.classList.add("active");
