@@ -73,7 +73,7 @@ function updateLeft(data) {
     day: "numeric",
     month: "long",
     year: "numeric"
-  });
+  })
 }
 
 /* highlight */
@@ -142,10 +142,10 @@ function renderHourly(hours) {
           ${Math.round(hourData.temp)}${unitSymbol}
         </div>
       </div>
-    `;
+    `
 
     hourlyForecast.innerHTML += oneCard;
-  });
+  })
 }
 
 /* render week*/
@@ -164,8 +164,8 @@ function renderWeek(days) {
         <img src="${asset.icon}" width="40"><br>
         ${Math.round(day.temp)}${currentUnit === "C" ? "°C" : "°F"}
       </div>
-    `;
-  });
+    `
+  })
 }
 
 /* tabs */
@@ -174,7 +174,7 @@ todayTab.onclick = () => {
   weekView.classList.add("d-none");
   todayTab.classList.add("active");
   weekTab.classList.remove("active");
-};
+}
 
 weekTab.onclick = () => {
   todayView.classList.add("d-none");
@@ -183,16 +183,16 @@ weekTab.onclick = () => {
   todayTab.classList.remove("active");
 
   if (weatherData) renderWeek(weatherData.days);
-};
+}
 
 /* serach */
 searchBtn.onclick = () => {
   if (cityInput.value.trim()) fetchWeather(cityInput.value.trim());
-};
+}
 
 cityInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") searchBtn.click();
-});
+  if (e.key === "Enter") searchBtn.click()
+})
 
 /* unit btns */
 cBtn.onclick = () => {
@@ -202,7 +202,7 @@ cBtn.onclick = () => {
 
   if (cityInput.value.trim()) fetchWeather(cityInput.value.trim());
   else fetchWeather("Bangalore");
-};
+}
 
 fBtn.onclick = () => {
   currentUnit = "F";
@@ -211,7 +211,7 @@ fBtn.onclick = () => {
 
   if (cityInput.value.trim()) fetchWeather(cityInput.value.trim());
   else fetchWeather("Bangalore");
-};
+}
 
 /* D */
 fetchWeather("Bangalore");
