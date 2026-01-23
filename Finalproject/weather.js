@@ -112,8 +112,8 @@ function renderHourly(hours) {
 
     const iconData = assets[hourData.icon] || assets.default;
 
-    const hourPart = hourData.datetime.split(":")[0];  // "13"
-    const hour24 = Number(hourPart);                   // 13
+    const hourPart = hourData.datetime.split(":")[0];  
+    const hour24 = Number(hourPart);                   
 
     let period = "AM";
     if (hour24 >= 12) {
